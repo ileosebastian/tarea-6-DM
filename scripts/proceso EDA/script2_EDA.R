@@ -171,20 +171,57 @@ clientes_limpio %>%
 table(clientes_limpio$ingreso_anual) # <- segun esto, es correcto
 
 # ¿cuál es el rango en dólares que gana la mayoría de las personas?
-# NO SE < PREGUNTAR
+# como hay 200 personas, con mas de 100 estaremos viendo a la 'mayoria de personas'
+clientes_limpio %>% 
+  filter(
+    id < 181
+  ) %>% 
+  summarise(
+    rango_minimo = as.character( min(range(.$ingreso_anual)) ),
+    rango_minimo = paste0('$ ',rango_minimo,'k'),
+    
+    rango_maximo = as.character( max(range(.$ingreso_anual)) ),
+    rango_maximo = paste0('$ ',rango_maximo,'k'),
+    
+    rango_de_ganancia = as.character( diff(range(.$ingreso_anual)) ),
+    rango_de_ganancia = paste0('$ ',rango_de_ganancia,'k'),
+  )
 
 # ¿de cuánto dólares es el ingreso mínimo?
 min_max_ingreso_anual # de 18 mil dolares anuales
 
 # ¿qué rango de edad tienen los clientes más habituales del centro comercial?
 # Como se se cuales son clientes habituales y cuales no?
-ran_edad # 52
+clientes_limpio %>% 
+  filter(
+    id < 181
+  ) %>% 
+  summarise(
+    rango_minimo = as.character( min(range(.$edad)) ),
+    rango_minimo = paste0(rango_minimo,' años'),
+    
+    rango_maximo = as.character( max(range(.$edad)) ),
+    rango_maximo = paste0(rango_maximo,' años'),
+    
+    rango_de_edad = as.character( diff(range(.$edad)) ),
+    rango_de_edad = paste0(rango_de_edad,' años'),
+  )
 
 # ¿cuál es el rango de spending score de la mayoría de los clientes?
-ran_puntaje # 98 puntos
-
-
-
+clientes_limpio %>% 
+  filter(
+    id < 181
+  ) %>% 
+  summarise(
+    rango_minimo = as.character( min(range(.$puntaje)) ),
+    rango_minimo = paste0(rango_minimo,' puntos'),
+    
+    rango_maximo = as.character( max(range(.$puntaje)) ),
+    rango_maximo = paste0(rango_maximo,' puntos'),
+    
+    rango_de_puntaje = as.character( diff(range(.$puntaje)) ),
+    rango_de_puntaje = paste0(rango_de_puntaje,' puntos'),
+  )
 
 
 # MIS PREGUNTAS INTERESANTES ------
