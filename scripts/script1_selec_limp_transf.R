@@ -1,0 +1,16 @@
+# LIBRERIAS A UTILIZAR
+
+
+
+#####
+# SELECCION
+
+
+##### 
+# LIMPIEZA
+
+
+#####
+# TRANSFORMACION
+
+
