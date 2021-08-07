@@ -34,7 +34,13 @@ apply(clientes_limpio,2,function(x) sum(is.na(x)))
 #####
 # TRANSFORMACION
 
-# puede ser lo siguientes?
+# lo siguiente, no se puede caracterizar como una transformacion de datos perce
+# esto servira solo para los algoritmos de clustering de esta tarea
+
+# Femenino --> 1
+# Masculino --> 2
+
+
 clts <- clientes_limpio %>% 
   mutate(
     genero = ifelse(genero == 'Femenino', 1, 2)
