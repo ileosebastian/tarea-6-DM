@@ -30,6 +30,8 @@ prom_puntaje <- clientes_limpio %$% mean(puntaje) # 50.2 <- puede ser que, la ge
                                   # moderamente en el CC, segun el comportamiento
                                   # dado por el puntaje, que de media es 50 puntos
                                   # <---- dato con alto valor
+
+
 # >>>> MEDIANA
 #  ...de genero
 med_genero <- clientes_limpio %$% median(genero) # NA <---- sin sentido aparente
@@ -134,7 +136,8 @@ min_max_genero
 min_max_edad <- range(clientes_limpio$edad, na.rm = TRUE)
 min_max_edad
 # ...de ingreso_anual
-min_max_ingreso_anual <- range(clientes_limpio$ingreso_anual, na.rm = TRUE)
+min_max_ingreso_anual <- 
+  range(clientes_limpio$ingreso_anual, na.rm = TRUE)
 min_max_ingreso_anual
 # ...de puntaje
 min_max_puntaje <- range(clientes_limpio$puntaje, na.rm = TRUE)
@@ -152,6 +155,49 @@ ran_ingreso_anual
 # ...de puntaje
 ran_puntaje <- diff(range(clientes_limpio$puntaje, na.rm = TRUE))
 ran_puntaje
+
+
+
+# --------
+clientes_limpio %>%
+  summarise(
+    MODA = Mode(genero, na.rm = TRUE)
+  )
+
+clientes_limpio %>%
+  summarise(
+    MEDIA = mean(edad, na.rm= TRUE),
+    MEDIANA = median(edad, na.rm = TRUE),
+    MODA = Mode(edad, na.rm = TRUE), 
+    VARIANZA = var(edad, na.rm = TRUE),
+    DESVIACION_ST = sd(edad, na.rm = TRUE),
+    MIN_MAX = range(edad, na.rm = TRUE),
+    RANGO = diff(range(edad, na.rm = TRUE))
+  )
+
+clientes_limpio %>%
+  summarise(
+    MEDIA = mean(ingreso_anual, na.rm= TRUE),
+    MEDIANA = median(ingreso_anual, na.rm = TRUE),
+    MODA = Mode(ingreso_anual, na.rm = TRUE), 
+    VARIANZA = var(ingreso_anual, na.rm = TRUE),
+    DESVIACION_ST = sd(ingreso_anual, na.rm = TRUE),
+    MIN_MAX = range(ingreso_anual, na.rm = TRUE),
+    RANGO = diff(range(ingreso_anual, na.rm = TRUE))
+  )
+
+clientes_limpio %>%
+  summarise(
+    MEDIA = mean(puntaje, na.rm= TRUE),
+    MEDIANA = median(puntaje, na.rm = TRUE),
+    MODA = Mode(puntaje, na.rm = TRUE), 
+    VARIANZA = var(puntaje, na.rm = TRUE),
+    DESVIACION_ST = sd(puntaje, na.rm = TRUE),
+    MIN_MAX = range(puntaje, na.rm = TRUE),
+    RANGO = diff(range(puntaje, na.rm = TRUE))
+  )
+
+
 
 # CONCLUSION:
 # Como se pude observar, a partir de los datos, la dispersion de los datos es moderada,
@@ -191,7 +237,6 @@ clientes_limpio %>%
 min_max_ingreso_anual # de 18 mil dolares anuales
 
 # ¿qué rango de edad tienen los clientes más habituales del centro comercial?
-# Como se se cuales son clientes habituales y cuales no?
 clientes_limpio %>% 
   filter(
     id < 181
@@ -209,9 +254,7 @@ clientes_limpio %>%
 
 # ¿cuál es el rango de spending score de la mayoría de los clientes?
 clientes_limpio %>% 
-  filter(
-    id < 181
-  ) %>% 
+  filter( id < 181 ) %>% 
   summarise(
     rango_minimo = as.character( min(range(.$puntaje)) ),
     rango_minimo = paste0(rango_minimo,' puntos'),
@@ -228,40 +271,26 @@ clientes_limpio %>%
 # 1. ¿de cuánto dólares es el ingreso maximo?
 min_max_ingreso_anual # de 137 mil dolares anuales
 
+table(clientes_limpio$ingreso_anual)
+
 # 2. ¿que clientes ganan en promedio, masculinos o femeninos?
 clientes_limpio %>% 
-  filter(
-    genero == 'Femenino'
-  ) %$%
-  mean(
-    .$ingreso_anual
-  )
+  filter( genero == 'Femenino' ) %$%
+  mean( .$ingreso_anual )
 clientes_limpio %>% 
-  filter(
-    genero == 'Masculino'
-  ) %$%
-  mean(
-    .$ingreso_anual
-  )
+  filter( genero == 'Masculino' ) %$%
+  mean( .$ingreso_anual )
 
 
 # 3. ¿cuantos son los clientes que estan en el rango modal de ingreso anual?
 moda_menor <- min(moda_ingreso_anual)
-moda_menor
 moda_mayor <- max(moda_ingreso_anual)
-moda_mayor
+
 clientes_limpio %>% 
-  filter(
-    ingreso_anual >= moda_menor
-  ) %>% 
-  filter(
-    ingreso_anual <= moda_mayor
-  ) %>% 
-  summarise(
-    clientes_del_rango_modal = n() # hay 86 persoans dentro de este rango
-  )
-
-
+  filter( ingreso_anual >= moda_menor ) %>% 
+  filter( ingreso_anual <= moda_mayor ) %>% 
+  summarise( clientes_del_rango_modal = n() )
+# hay 86 persoans dentro de este rango
 
 
 

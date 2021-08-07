@@ -20,6 +20,81 @@ grupo_promedio <- cutree(hc.average, k=5)
 grupo_promedio[hc.average$labels[hc.average$order]]
 
 
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_promedio))
+objetos <- objetos %>% filter( grupo_promedio == 1)
+i <- objetos$indice
+grupo_1 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_promedio))
+objetos <- objetos %>% filter( grupo_promedio == 2)
+i <- objetos$indice
+grupo_2 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_promedio))
+objetos <- objetos %>% filter( grupo_promedio == 3)
+i <- objetos$indice
+grupo_3 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_promedio))
+objetos <- objetos %>% filter( grupo_promedio == 4)
+i <- objetos$indice
+grupo_4 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_promedio))
+objetos <- objetos %>% filter( grupo_promedio == 5)
+i <- objetos$indice
+grupo_5 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
 
 
 # MATRIZ DE PARTICION ----
@@ -57,7 +132,7 @@ hc.average <- set(hc.average, "labels_cex", 0.4)
 # plot
 plot(
   hc.average, 
-  main = 'Segmentacion de clientes, con enlace simple', 
+  main = 'Segmentacion de clientes, con enlace promedio', 
   ylab = 'Distancia', xlab = "Clientes"
 )
 

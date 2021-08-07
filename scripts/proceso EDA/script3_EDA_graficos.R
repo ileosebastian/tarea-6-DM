@@ -125,7 +125,6 @@ plot_ingreso_anual  <- plot_ingreso_anual  +
   labs(
     title = '6'
   )
-# plot_ingreso_anual  <- plot_ingreso_anual  + facet_grid(~genero)
 plot_ingreso_anual 
 
 

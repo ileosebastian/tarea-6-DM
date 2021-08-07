@@ -18,6 +18,80 @@ hc.complete$labels[hc.complete$order]
 grupo_completo <- cutree(hc.complete, k=5)
 grupo_completo[hc.complete$labels[hc.complete$order]]
 
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_completo))
+objetos <- objetos %>% filter( grupo_completo == 1)
+i <- objetos$indice
+grupo_1 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_completo))
+objetos <- objetos %>% filter( grupo_completo == 2)
+i <- objetos$indice
+grupo_2 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_completo))
+objetos <- objetos %>% filter( grupo_completo == 3)
+i <- objetos$indice
+grupo_3 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_completo))
+objetos <- objetos %>% filter( grupo_completo == 4)
+i <- objetos$indice
+grupo_4 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
+
+n = 1:200
+objetos <- as_tibble(cbind(indice=n, grupo_completo))
+objetos <- objetos %>% filter( grupo_completo == 5)
+i <- objetos$indice
+grupo_5 <- 
+  as_tibble(
+    cbind(
+      id = clientes_limpio$id[i],
+      genero = clientes_limpio$genero[i],
+      edad = clientes_limpio$edad[i],
+      ingreso_anual = clientes_limpio$ingreso_anual[i],
+      puntaje = clientes_limpio$puntaje[i]
+    )
+  )
 
 
 
@@ -52,11 +126,11 @@ hc.complete <- color_branches(hc.complete, k = 5)
 # Colores de las etiquetas (objetos)
 hc.complete <- color_labels(hc.complete, k = 5)
 # Tamanio de fuente de etiquetas
-hc.complete <- set(hc.complete, "labels_cex", 0.4)
+hc.complete <- set(hc.complete, "labels_cex", 0.9)
 # plot
 plot(
   hc.complete, 
-  main = 'Segmentacion de clientes, con enlace simple', 
+  main = 'Segmentacion de clientes, con enlace completo', 
   ylab = 'Distancia', xlab = "Clientes"
 )
 

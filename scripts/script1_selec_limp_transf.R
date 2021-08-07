@@ -6,8 +6,6 @@ library(tidyverse)
 # SELECCION
 clientes <- read.csv('datos/mall_clientes.csv')
 
-glimpse(clientes)
-
 ##### 
 # LIMPIEZA
 clientes_limpio <- clientes %>% 
@@ -18,7 +16,6 @@ clientes_limpio <- clientes %>%
     ingreso_anual = Annual.Income..k..,
     puntaje = Spending.Score..1.100.
   )
-
 clientes_limpio <- clientes_limpio %>% 
   mutate(
     genero = ifelse(genero == 'Female', 'Femenino', 'Masculino')
@@ -39,13 +36,10 @@ apply(clientes_limpio,2,function(x) sum(is.na(x)))
 
 # Femenino --> 1
 # Masculino --> 2
-
-
 clts <- clientes_limpio %>% 
   mutate(
     genero = ifelse(genero == 'Femenino', 1, 2)
   )
-
 head(clts)
 
 # OJO: 
